@@ -63,4 +63,8 @@ swagger:
   email: 1486480852@qq.com
   description: 从0到1开发一个框架
 
+#log4j配置
+logging:
+  config: classpath:log4j-spring.xml
+
 

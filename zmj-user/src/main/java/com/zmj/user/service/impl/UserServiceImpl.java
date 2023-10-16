@@ -6,9 +6,8 @@ import com.zmj.entity.PageResult;
 import com.zmj.user.convert.UserPoConverter;
 import com.zmj.user.entity.dto.UserDto;
 import com.zmj.user.entity.po.UserPo;
-import com.zmj.user.mapper.UserMapper;
+import com.zmj.user.dao.UserMapper;
 import com.zmj.user.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

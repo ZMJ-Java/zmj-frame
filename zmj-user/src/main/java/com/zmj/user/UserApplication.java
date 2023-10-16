@@ -12,10 +12,11 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @SpringBootApplication
-@MapperScan(value = {"com.zmj.*.mapper","com.zmj.*.dao"})
+@MapperScan(value = {"com.zmj.*.dao"})
 @ComponentScan(value = "com.zmj")
 public class UserApplication {
     public static void main(String[] args) {
+        System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
         SpringApplication.run(UserApplication.class);
     }
 }
