@@ -1,5 +1,7 @@
 package com.zmj.user.entity;
 
+import io.swagger.annotations.ApiParam;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -11,23 +13,23 @@ import java.io.Serializable;
  */
 public class SysUser implements Serializable {
     private static final long serialVersionUID = -63959515769475332L;
-
+    @ApiParam("唯一id")
     private Long id;
-
+    @ApiParam("名称")
     private String name;
-
+    @ApiParam("年龄")
     private Integer age;
-
+    @ApiParam("创建者名称")
     private String createBy;
-
+    @ApiParam("创建时间")
     private Date createTime;
-
+    @ApiParam("更新者名称")
     private String updateBy;
-
+    @ApiParam("更新时间")
     private Date updateTime;
-
+    @ApiParam("删除标识")
     private Integer deleteFlag;
-
+    @ApiParam("版本")
     private Integer version;
 
 

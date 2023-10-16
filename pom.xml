@@ -12,6 +12,8 @@
         <module>zmj-common</module>
         <module>zmj-common/zmj-common-web</module>
         <module>zmj-common/zmj-common-mybatisplus</module>
+        <module>zmj-common/zmj-common-swagger</module>
+        <module>zmj-common/zmj-common-redis</module>
     </modules>
     <version>1.0-SNAPSHOT</version>
 

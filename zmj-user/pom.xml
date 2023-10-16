@@ -50,6 +50,19 @@
             <artifactId>mapstruct</artifactId>
             <version>1.4.2.Final</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.zmj</groupId>
+            <artifactId>zmj-common-swagger</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zmj</groupId>
+            <artifactId>zmj-common-redis</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

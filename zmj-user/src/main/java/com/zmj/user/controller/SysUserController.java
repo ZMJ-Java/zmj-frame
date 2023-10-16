@@ -5,6 +5,8 @@ import com.zmj.bean.Result;
 import com.zmj.user.entity.SysUser;
 import com.zmj.user.entity.req.SysUserReq;
 import com.zmj.user.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +19,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("sysUser")
+@Api(tags = "用户Controller")
 public class SysUserController {
     /**
      * 服务对象
@@ -53,6 +56,7 @@ public class SysUserController {
      * @return 新增结果
      */
     @PostMapping
+    @ApiOperation(value = "新增用户",notes = "用户数据")
     public Result<SysUser> add(SysUser sysUser) {
         return Result.ok(this.sysUserService.insert(sysUser));
     }
