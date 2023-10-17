@@ -1,5 +1,6 @@
 package com.zmj.inteceptor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
@@ -20,6 +21,7 @@ import java.util.*;
         @Signature(args = {Statement.class, ResultHandler.class}, method = "query", type = StatementHandler.class),
         @Signature(args = {Statement.class}, method = "update", type = StatementHandler.class),
         @Signature(args = {Statement.class}, method = "batch", type = StatementHandler.class)})
+@Slf4j
 public class SqlBeautyInterceptor implements Interceptor {
 
     @Override
@@ -37,7 +39,7 @@ public class SqlBeautyInterceptor implements Interceptor {
             Object parameterObject = boundSql.getParameterObject();
             List<ParameterMapping> parameterMappingList = boundSql.getParameterMappings();
             sql = formatSql(sql, parameterObject, parameterMappingList);
-            System.out.println("SQL： [ " + sql + " ]执行耗时[ " + sqlCost + "ms ]");
+            log.info("SQL： [ " + sql + " ]执行耗时[ " + sqlCost + "ms ]");
         }
     }
 

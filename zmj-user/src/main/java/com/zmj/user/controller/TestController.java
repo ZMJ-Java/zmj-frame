@@ -3,13 +3,15 @@ package com.zmj.user.controller;
 import com.zmj.bean.Result;
 import com.zmj.redis.util.RedisShareLockUtil;
 import com.zmj.redis.util.RedisUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zmj.tool.ExportWorldUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 
 /**
@@ -18,9 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2023/10/11 10:07
  */
 @RestController
+@Slf4j
 public class TestController {
-
-    private Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -62,10 +63,18 @@ public class TestController {
     public void testLog() {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 1000000; i++) {
-            logger.info("这个是第{}日志", i);
+            log.info("这个是第{}日志", i);
         }
         long endTime = System.currentTimeMillis();
-        logger.info("当前日志花费时间: {}s", endTime - startTime);
+        log.info("当前日志花费时间: {}s", endTime - startTime);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/testExport")
+    public void testExport() throws Exception {
+        HashMap<String, Object> dataMap = new HashMap<>();
+        dataMap.put("name", "TextFile");
+        dataMap.put("auditName", "詹茂钧");
+        ExportWorldUtil.exportWord(dataMap, "导出的文件", "wordText.ftl");
     }
 
 

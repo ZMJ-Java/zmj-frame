@@ -66,5 +66,7 @@ swagger:
 #log4j配置
 logging:
   config: classpath:log4j-spring.xml
-
+log:
+  aspect:
+    enable: true
 

@@ -23,6 +23,7 @@
         <module>zmj-common-redis</module>
         <module>zmj-common-swagger</module>
         <module>zmj-common-web</module>
+        <module>zmj-common-tool</module>
     </modules>
 
 
