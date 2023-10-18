@@ -24,6 +24,7 @@
         <module>zmj-common-swagger</module>
         <module>zmj-common-web</module>
         <module>zmj-common-tool</module>
+        <module>zmj-common-websocket</module>
     </modules>
 
 
@@ -52,6 +53,11 @@
             <dependency>
                 <groupId>com.zmj</groupId>
                 <artifactId>zmj-common-log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zmj</groupId>
+                <artifactId>zmj-common-websocket</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

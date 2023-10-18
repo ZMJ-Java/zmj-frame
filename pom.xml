@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>zmj-user</module>
+        <module>zmj-demo</module>
         <module>zmj-common</module>
         <module>zmj-dependencies</module>
     </modules>
