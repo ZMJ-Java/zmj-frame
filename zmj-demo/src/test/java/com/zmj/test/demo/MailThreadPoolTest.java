@@ -2,6 +2,8 @@ package com.zmj.test.demo;
 
 import com.zmj.tool.CompletableFutureUtils;
 import com.zmj.user.UserApplication;
+import com.zmj.user.event.Person;
+import com.zmj.user.event.PersonEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +30,9 @@ public class MailThreadPoolTest {
 
     @Resource(name = "mailThreadPool")
     private ThreadPoolExecutor mailThreadPool;
+
+    @Resource
+    private PersonEventService personEventService;
 
 
     @Test
@@ -67,6 +72,15 @@ public class MailThreadPoolTest {
             String name = CompletableFutureUtils.getResult(futureTaskList.get(i), 1L, TimeUnit.SECONDS, "666", log);
             log.info("testFuture:{}", name);
         }
+    }
+
+
+    @Test
+    public void publishEvent(){
+        Person person = new Person();
+        person.setName("zmj");
+        person.setAge(12);
+        personEventService.executePerson(person);
     }
 
 }
