@@ -1,6 +1,11 @@
 package com.zmj.test.demo;
 
+import com.alibaba.fastjson.JSON;
+import com.zmj.redis.delayQueue.MassMailTask;
+import com.zmj.redis.delayQueue.MassMailTaskService;
+import com.zmj.redis.util.RedisShareLockUtil;
 import com.zmj.tool.CompletableFutureUtils;
+import com.zmj.tool.SimpleDateFormatUtils;
 import com.zmj.user.UserApplication;
 import com.zmj.user.event.Person;
 import com.zmj.user.event.PersonEventService;
@@ -11,8 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,6 +42,12 @@ public class MailThreadPoolTest {
 
     @Resource
     private PersonEventService personEventService;
+
+    @Resource
+    private MassMailTaskService massMailTaskService;
+
+    @Resource
+    private RedisShareLockUtil redisShareLockUtil;
 
 
     @Test
@@ -76,11 +91,47 @@ public class MailThreadPoolTest {
 
 
     @Test
-    public void publishEvent(){
+    public void publishEvent() {
         Person person = new Person();
         person.setName("zmj");
         person.setAge(12);
         personEventService.executePerson(person);
+    }
+
+
+    @Test
+    public void publishTask() throws ParseException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        MassMailTask massMailTask = new MassMailTask();
+
+        massMailTask.setTaskId(1L);
+        massMailTask.setStartTime(simpleDateFormat.parse("2023-10-23 20:06:00"));
+
+        massMailTaskService.pushMassMailTaskQueue(massMailTask);
+    }
+
+    @Test
+    public void deal() throws ParseException {
+
+        String lockKey = "test.delay.task";
+        String requestId = UUID.randomUUID().toString();
+
+        try {
+            boolean lock = redisShareLockUtil.lock(lockKey, requestId, 5L);
+
+            if (!lock){
+                return;
+            }
+            Set<Long> longs = massMailTaskService.poolMassTaskQueue();
+            log.info("定时任务拉取：{}",JSON.toJSONString(longs));
+
+        } catch (Exception e) {
+
+            log.error("拉取异常：{}",e.getMessage());
+        }finally {
+            redisShareLockUtil.unlock(lockKey,requestId);
+        }
     }
 
 }
