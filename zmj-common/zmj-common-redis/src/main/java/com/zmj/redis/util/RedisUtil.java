@@ -1,9 +1,17 @@
 package com.zmj.redis.util;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -15,8 +23,25 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
 
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
+
+    public static final String CACHE_KEY_SEPARATOR = ".";
+
+    private DefaultRedisScript<Boolean> casScript;
+
+    @PostConstruct
+    public void init() {
+        casScript = new DefaultRedisScript<>();
+        casScript.setResultType(Boolean.class);
+        casScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("compareAndSet.lua")));
+    }
+
+    public Boolean compareAndSet(String key, Long oldValue, Long newValue) {
+        List<String> keys = new ArrayList<>();
+        keys.add(key);
+        return (Boolean) redisTemplate.execute(casScript, keys, oldValue, newValue);
+    }
 
     public void set(String key, String value) {
         redisTemplate.opsForValue().set(key, value);
@@ -31,7 +56,7 @@ public class RedisUtil {
     }
 
     public boolean delete(String key) {
-      return   redisTemplate.delete(key);
+        return redisTemplate.delete(key);
     }
 
 
