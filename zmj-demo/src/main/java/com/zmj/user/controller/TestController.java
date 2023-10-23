@@ -5,12 +5,11 @@ import com.zmj.redis.util.LocalCacheUtil;
 import com.zmj.redis.util.RedisShareLockUtil;
 import com.zmj.redis.util.RedisUtil;
 import com.zmj.tool.ExportWorldUtil;
+import com.zmj.user.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -114,6 +113,14 @@ public class TestController {
         private Long id;
         private String name;
         private Long price;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/testQuery")
+    public void testQuery(@RequestBody SysUser sysUser) throws Exception {
+
+        //2023-10-23 15:17:15
+        System.out.println(sysUser);
+
     }
 
 }

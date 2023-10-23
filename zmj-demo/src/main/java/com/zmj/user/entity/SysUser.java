@@ -7,6 +7,8 @@ import com.zmj.entity.BaseEntity;
 import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -17,7 +19,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_user")
-public class SysUser extends BaseEntity {
+public class SysUser implements Serializable {
 
     @ApiParam("唯一id")
     @TableId(value = "id",type = IdType.AUTO)
@@ -26,6 +28,19 @@ public class SysUser extends BaseEntity {
     private String name;
     @ApiParam("年龄")
     private Integer age;
+
+    private String createBy;
+
+    private Date createTime;
+
+    private String updateBy;
+
+    private Date updateTime;
+
+    private Integer deleteFlag;
+
+    private Integer version;
+
 
 
 }
