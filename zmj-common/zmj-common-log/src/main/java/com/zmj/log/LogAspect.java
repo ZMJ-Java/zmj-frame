@@ -29,7 +29,7 @@ public class LogAspect {
 
 
     @Around("pointCut()")
-    public void around(ProceedingJoinPoint pjp) throws Throwable {
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
         Object[] args = pjp.getArgs();
 
         String req = new Gson().toJson(args);
@@ -50,7 +50,7 @@ public class LogAspect {
 
         log.info("{},response:{},costTime:{}", methodName, response, endTime - startTime);
 
-
+        return responseObj;
 
     }
 }

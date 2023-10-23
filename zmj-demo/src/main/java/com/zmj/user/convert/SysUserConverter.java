@@ -3,6 +3,7 @@ package com.zmj.user.convert;
 import com.zmj.user.entity.SysUser;
 import com.zmj.user.entity.req.SysUserReq;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -13,6 +14,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface SysUserConverter {
     SysUserConverter SYS_USER_CONVERTER = Mappers.getMapper(SysUserConverter.class);
+
     SysUser convertReqToSysUser(SysUserReq sysUserReq);
 
 }

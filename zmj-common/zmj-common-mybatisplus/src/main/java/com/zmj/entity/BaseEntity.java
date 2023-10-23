@@ -32,14 +32,14 @@ public class BaseEntity implements Serializable {
 
     /**
      * 逻辑删除字段
-     * */
+     */
     @TableField(fill = FieldFill.INSERT)
     @TableLogic
     private Integer deleteFlag;
 
     /**
      * mybatisplus的锁字段
-     * */
+     */
     @TableField(fill = FieldFill.INSERT)
     private Integer version;
 }

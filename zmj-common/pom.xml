@@ -25,6 +25,7 @@
         <module>zmj-common-web</module>
         <module>zmj-common-tool</module>
         <module>zmj-common-websocket</module>
+        <module>zmj-common-test</module>
     </modules>
 
 
@@ -58,6 +59,12 @@
             <dependency>
                 <groupId>com.zmj</groupId>
                 <artifactId>zmj-common-websocket</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zmj</groupId>
+                <artifactId>zmj-common-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

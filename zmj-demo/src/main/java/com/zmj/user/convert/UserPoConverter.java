@@ -3,6 +3,7 @@ package com.zmj.user.convert;
 import com.zmj.user.entity.dto.UserDto;
 import com.zmj.user.entity.po.UserPo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -14,6 +15,8 @@ import org.mapstruct.factory.Mappers;
 public interface UserPoConverter {
 
     UserPoConverter USER_PO_CONVERTER = Mappers.getMapper(UserPoConverter.class);
+//    @Mapping(target = "name")
+//    @Mapping(target = "age")
     UserPo converterToUserPo(UserDto userDto);
 
 }

@@ -7,6 +7,7 @@ import com.zmj.user.entity.req.SysUserReq;
 import com.zmj.user.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

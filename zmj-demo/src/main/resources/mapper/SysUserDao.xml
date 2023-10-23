@@ -10,21 +10,13 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-        <result property="deleteFlag" column="delete_flag" jdbcType="INTEGER"/>
+        <result property="deleteFlag" column="delete_flag" jdbcType="TINYINT"/>
         <result property="version" column="version" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="SysUserMap">
-        select id,
-               name,
-               age,
-               create_by,
-               create_time,
-               update_by,
-               update_time,
-               delete_flag,
-               version
+        select id,name,age,create_by,create_time,update_by,update_time,delete_flag,version
         from sys_user
         where id = #{id}
     </select>
@@ -102,8 +94,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into sys_user(name,age,create_by,create_time,update_by,update_time,delete_flag,version)
-        values (#{name},#{age},#{createBy},#{createTime},#{updateBy},#{updateTime},#{deleteFlag},#{version})
+        insert into sys_user(name, age, create_by, create_time, update_by, update_time, delete_flag, version)
+        values (#{name}, #{age}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{deleteFlag}, #{version})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">

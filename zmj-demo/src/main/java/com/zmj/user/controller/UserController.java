@@ -1,10 +1,12 @@
 package com.zmj.user.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.zmj.bean.Result;
 import com.zmj.user.entity.dto.UserDto;
 import com.zmj.user.entity.req.UserListReq;
 import com.zmj.user.entity.req.UserReq;
 import com.zmj.user.service.UserService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +28,16 @@ public class UserController {
 
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userReq, userDto);
-        /* int i = 1 / 0;*/
-        return Result.ok(userService.addUser(userDto));
+        Integer i = userService.addUser(userDto);
+        System.out.println("com.zmj.user.controller.UserController.addUser i="+i);
+        i = 1;
+        return Result.ok(i);
 
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUserById/{id}")
     public Result deleteUserById(@PathVariable Integer id) {
+        System.out.println("结果是： "+userService.deleteUserById(id));
         return Result.ok(userService.deleteUserById(id));
     }
 

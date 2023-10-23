@@ -3,6 +3,7 @@ package com.zmj.user.service;
 import com.zmj.entity.PageResult;
 import com.zmj.user.entity.dto.UserDto;
 import com.zmj.user.entity.po.UserPo;
+import io.swagger.models.auth.In;
 
 
 /**
@@ -12,9 +13,9 @@ import com.zmj.user.entity.po.UserPo;
  */
 public interface UserService {
 
-    int addUser(UserDto userDto);
+    Integer addUser(UserDto userDto);
 
-    int deleteUserById(Integer id);
+    Integer deleteUserById(Integer id);
 
     PageResult<UserPo> getUserPage(UserDto userDto);
 
