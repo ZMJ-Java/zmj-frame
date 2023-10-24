@@ -42,6 +42,11 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.3</version>
+        </dependency>
     </dependencies>
 
 </project>

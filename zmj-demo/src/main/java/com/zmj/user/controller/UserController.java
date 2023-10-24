@@ -41,7 +41,7 @@ public class UserController {
         return Result.ok(userService.deleteUserById(id));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getUserPage")
+    @RequestMapping(method = RequestMethod.POST, value = "/getUserPage")
     public Result getPage(@RequestBody UserListReq userListReq) {
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userListReq, userDto);
