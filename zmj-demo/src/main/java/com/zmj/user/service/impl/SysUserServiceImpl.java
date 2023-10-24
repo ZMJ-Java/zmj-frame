@@ -6,11 +6,11 @@ import com.zmj.user.entity.SysUser;
 import com.zmj.user.dao.SysUserDao;
 import com.zmj.user.entity.req.SysUserReq;
 import com.zmj.user.service.SysUserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (SysUser)表服务实现类
@@ -94,5 +94,11 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public boolean deleteById(Long id) {
         return this.sysUserDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public Long queryCount(Map conditions) {
+        SysUser sysUser = new SysUser();
+        return sysUserDao.count(sysUser);
     }
 }

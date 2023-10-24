@@ -4,6 +4,8 @@ import com.zmj.bean.PageResponse;
 import com.zmj.user.entity.SysUser;
 import com.zmj.user.entity.req.SysUserReq;
 
+import java.util.Map;
+
 
 /**
  * (SysUser)表服务接口
@@ -52,4 +54,5 @@ public interface SysUserService {
      */
     boolean deleteById(Long id);
 
+    Long queryCount(Map conditions);
 }

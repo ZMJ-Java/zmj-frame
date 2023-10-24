@@ -1,5 +1,6 @@
 package com.zmj.bean;
 
+import lombok.Data;
 import lombok.Setter;
 
 import java.util.Collections;
@@ -10,7 +11,7 @@ import java.util.List;
  * @Package com.zmj.bean
  * @date 2023/10/13 13:33
  */
-
+@Data
 public class PageResponse<T> {
 
     private Long pageNo = 1L;
@@ -65,4 +66,6 @@ public class PageResponse<T> {
         this.start = (this.pageNo > 0 ? (this.pageNo - 1) * this.pageSize : 0);
         this.end = (this.start - 1 + this.pageSize * (this.pageNo) > 0 ? this.pageNo : 1);
     }
+
+
 }
