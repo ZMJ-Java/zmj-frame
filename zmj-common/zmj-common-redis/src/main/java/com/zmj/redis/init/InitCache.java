@@ -2,6 +2,7 @@ package com.zmj.redis.init;
 
 import com.zmj.redis.util.SpringContextUtil;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date 2023/10/16 8:25
  */
 @Component
+@ConditionalOnProperty(name = {"init.cahce.enable"}, havingValue = "true")
 public class InitCache implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
