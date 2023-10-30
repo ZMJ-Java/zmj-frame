@@ -212,9 +212,9 @@
             <properties>
                 <env-flag>local</env-flag>
             </properties>
-            <activation>
+<!--            <activation>
                 <activeByDefault>true</activeByDefault>
-            </activation>
+            </activation>-->
         </profile>
 
         <profile>
@@ -222,6 +222,9 @@
             <properties>
                 <env-flag>beta</env-flag>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
 
         <profile>

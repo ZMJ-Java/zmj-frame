@@ -1,21 +1,17 @@
 package com.zmj.user.dao;
 
 import com.zmj.user.entity.SysUser;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
 /**
- * (SysUser)表数据库访问层
- *
- * @author makejava
- * @since 2023-10-13 13:14:23
+ * @author ZMJ
+ * @Package com.zmj.user.data_back
+ * @date 2023/10/30 23:43
  */
-@Repository
-public interface SysUserDao {
-
+public interface SysUserBackDao {
     /**
      * 通过ID查询单条数据
      *
@@ -27,10 +23,19 @@ public interface SysUserDao {
     /**
      * 查询指定行数据
      *
-     * @param sysUser  查询条件
+     * @param sysUser 查询条件
      * @return 对象列表
      */
-    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageNo") Long pageNo, @Param("pageSize") Long pageSize);
+    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageStart") Long pageStart, @Param("pageSize") Long pageSize);
+
+    /**
+     * 查询指定行数据
+     *
+     * @param sysUser 查询条件
+     * @return 对象列表
+     */
+    List<SysUser> queryAll(@Param("po") SysUser sysUser);
+
 
     /**
      * 统计总行数
@@ -81,9 +86,4 @@ public interface SysUserDao {
      */
     int deleteById(Long id);
 
-
-    List<SysUser> queryAll(SysUser sysUser);
-
-    void batchDelete(List<Long> ids);
 }
-

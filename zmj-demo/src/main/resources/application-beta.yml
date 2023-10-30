@@ -74,4 +74,3 @@ log:
 guava:
   cache:
     switch: true
-
